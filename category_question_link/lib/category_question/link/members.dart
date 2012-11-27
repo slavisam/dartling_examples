@@ -47,7 +47,7 @@ class Members extends MembersGen {
       List<String> roles = ['regular', 'manager', 'admin'];
       validation = roles.some((r) => r == member.role);
       if (!validation) {
-        var error = new EntityError('pre');
+        var error = new ValidationError('pre');
         error.message =
             '${concept.codes}.preAdd rejects the ${member.role} role.';
         errors.add(error);

@@ -1,11 +1,12 @@
 
 import 'package:dartling/dartling.dart';
+import 'package:unittest/unittest.dart';
 
 import 'package:default_project/default_project.dart';
 
 testDefaultProject(Repo repo, String domainCode, String modelCode) {
-  var models;
-  var entries;
+  DefaultModels models;
+  ProjectEntries entries;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
       models = repo.getDomainModels(domainCode);
@@ -180,7 +181,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var projects = entries.projects;
       var projectCount = projects.count;
       //projects.display('Projects Before Remove');
-      var programmingProjects = projects.select((p) => p.onProgramming);
+      Projects programmingProjects = projects.select((p) => p.onProgramming);
       expect(programmingProjects.empty, isFalse);
       expect(programmingProjects.source.empty, isFalse);
 
@@ -195,7 +196,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Order Projects by Name', () {
       var projects = entries.projects;
-      Projects orderedProjects =
+      var orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
       expect(orderedProjects.empty, isFalse);
       expect(orderedProjects.count, equals(projects.count));
@@ -218,7 +219,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Copy Projects', () {
       var projects = entries.projects;
-      Projects copiedProjects = projects.copy();
+      var copiedProjects = projects.copy();
       expect(copiedProjects.empty, isFalse);
       expect(copiedProjects.count, equals(projects.count));
       expect(copiedProjects, isNot(same(projects)));
