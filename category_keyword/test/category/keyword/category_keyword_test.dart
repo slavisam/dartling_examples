@@ -7,7 +7,7 @@ import 'package:category_keyword/category_keyword.dart';
 testCategoryKeyword(Repo repo, String domainCode, String modelCode) {
   var models;
   var session;
-  var entries;
+  KeywordEntries entries;
   group("Testing ${domainCode}.${modelCode}", () {
     setUp(() {
       models = repo.getDomainModels(domainCode);
