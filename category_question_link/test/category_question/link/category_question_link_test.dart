@@ -286,11 +286,9 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       try {
         s = null;
-        uri = null;
         uri = new Uri.fromString(s);
-      } on NullPointerException catch (e) {
-        expect(uri, isNull);
-        print('/// Not valid uri: $s; $e');
+      } on ArgumentError catch (e) {
+        print('/// Not valid uri: $s; $uri; $e');
         print('');
       }
     });
