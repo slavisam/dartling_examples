@@ -45,7 +45,7 @@ class Members extends MembersGen {
     bool validation = super.preAdd(member);
     if (validation) {
       List<String> roles = ['regular', 'manager', 'admin'];
-      validation = roles.some((r) => r == member.role);
+      validation = roles.any((r) => r == member.role);
       if (!validation) {
         var error = new ValidationError('pre');
         error.message =

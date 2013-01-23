@@ -19,7 +19,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
 
       var projectConcept = projects.concept;
       expect(projectConcept, isNotNull);
-      expect(projectConcept.attributes.list, isNot(isEmpty));
+      expect(projectConcept.attributes.toList(), isNot(isEmpty));
 
       var design = new Project(projectConcept);
       expect(design, isNotNull);
@@ -48,11 +48,11 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     tearDown(() {
       entries.clear();
       var projects = entries.projects;
-      expect(projects.empty, isTrue);
+      expect(projects.isEmpty, isTrue);
     });
     test("Empty Entries Test", () {
       entries.clear();
-      expect(entries.empty, isTrue);
+      expect(entries.isEmpty, isTrue);
     });
     test('From Project Model to JSON', () {
       var json = entries.toJson();
@@ -63,9 +63,9 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('From JSON to Project Model', () {
       var projects = entries.projects;
       projects.clear();
-      expect(projects.empty, isTrue);
+      expect(projects.isEmpty, isTrue);
       entries.fromJsonToData();
-      expect(projects.empty, isFalse);
+      expect(projects.isEmpty, isFalse);
       projects.display(title:'From JSON to Project Model');
     });
     test('Add Project Required Error', () {
@@ -119,9 +119,9 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('Find Project by Saved Oid', () {
       var projects = entries.projects;
       projects.clear();
-      expect(projects.empty, isTrue);
+      expect(projects.isEmpty, isTrue);
       entries.fromJsonToData();
-      expect(projects.empty, isFalse);
+      expect(projects.isEmpty, isFalse);
 
       var dartlingOid = new Oid.ts(1344888717723);
       var project = projects.find(dartlingOid);
@@ -156,7 +156,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('Select Projects by Function', () {
       var projects = entries.projects;
       var programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
       expect(programmingProjects.length, equals(2));
 
       programmingProjects.display(title:'Select Projects by Function');
@@ -164,8 +164,8 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('Select Projects by Function then Add', () {
       var projects = entries.projects;
       var programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
-      expect(programmingProjects.source.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
+      expect(programmingProjects.source.isEmpty, isFalse);
 
       var projectConcept = projects.concept;
       var programmingProject = new Project(projectConcept);
@@ -182,8 +182,8 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var projectCount = projects.count;
       //projects.display('Projects Before Remove');
       Projects programmingProjects = projects.select((p) => p.onProgramming);
-      expect(programmingProjects.empty, isFalse);
-      expect(programmingProjects.source.empty, isFalse);
+      expect(programmingProjects.isEmpty, isFalse);
+      expect(programmingProjects.source.isEmpty, isFalse);
 
       var searchName = 'Dartling';
       var project = programmingProjects.findByNameId(searchName);
@@ -198,9 +198,9 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var projects = entries.projects;
       var orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
-      expect(orderedProjects.empty, isFalse);
+      expect(orderedProjects.isEmpty, isFalse);
       expect(orderedProjects.count, equals(projects.count));
-      expect(orderedProjects.source.empty, isFalse);
+      expect(orderedProjects.source.isEmpty, isFalse);
       expect(orderedProjects.source.count, equals(projects.count));
 
       orderedProjects.display(title:'Order Projects by Name');
@@ -220,7 +220,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('Copy Projects', () {
       var projects = entries.projects;
       var copiedProjects = projects.copy();
-      expect(copiedProjects.empty, isFalse);
+      expect(copiedProjects.isEmpty, isFalse);
       expect(copiedProjects.count, equals(projects.count));
       expect(copiedProjects, isNot(same(projects)));
       expect(copiedProjects, equals(projects));

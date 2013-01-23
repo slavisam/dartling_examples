@@ -62,7 +62,7 @@ testCategoryKeyword(Repo repo, String domainCode, String modelCode) {
       entries.clear();
     });
     test("Empty Entries Test", () {
-      expect(entries.empty, isFalse);
+      expect(entries.isEmpty, isFalse);
     });
     test('From Model to JSON', () {
       var json = entries.toJson();
@@ -71,7 +71,7 @@ testCategoryKeyword(Repo repo, String domainCode, String modelCode) {
     });
     test('From JSON to Model', () {
       entries.clear();
-      expect(entries.empty, isTrue);
+      expect(entries.isEmpty, isTrue);
       entries.fromJsonToData();
       entries.categories.display(title:'From JSON to Model: Categories');
       entries.keywords.display(title:'From JSON to Model: Keywords');

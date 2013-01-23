@@ -32,11 +32,11 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       categoryConcept = entries.getConcept('Category');
       expect(categoryConcept, isNotNull);
-      expect(categoryConcept.attributes.empty, isFalse);
+      expect(categoryConcept.attributes.isEmpty, isFalse);
 
       webLinkConcept = entries.getConcept('WebLink');
       expect(webLinkConcept, isNotNull);
-      expect(webLinkConcept.attributes.empty, isFalse);
+      expect(webLinkConcept.attributes.isEmpty, isFalse);
       expect(webLinkConcept.parents.count, equals(1));
 
       categories = entries.categories;
@@ -115,11 +115,11 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       memberConcept = entries.getConcept('Member');
       expect(memberConcept, isNotNull);
-      expect(memberConcept.attributes.list, isNot(isEmpty));
+      expect(memberConcept.attributes.toList(), isNot(isEmpty));
 
       interestConcept = entries.getConcept('Interest');
       expect(interestConcept, isNotNull);
-      expect(interestConcept.attributes.list, isNot(isEmpty));
+      expect(interestConcept.attributes.toList(), isNot(isEmpty));
       expect(interestConcept.parents.count, equals(2));
 
       members = entries.members;
@@ -203,10 +203,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
     });
     test('Order Categories by Id (code not used, id is name)', () {
       Categories orderedCategories = categories.order();
-      expect(orderedCategories.list, isNot(isEmpty));
+      expect(orderedCategories.toList(), isNot(isEmpty));
       expect(orderedCategories.count, equals(categoryCount));
       expect(orderedCategories.source, isNotNull);
-      expect(orderedCategories.source.list, isNot(isEmpty));
+      expect(orderedCategories.source.toList(), isNot(isEmpty));
       expect(orderedCategories.source.count, equals(categoryCount));
 
       orderedCategories.display(title:
@@ -219,10 +219,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartWebLinks.count, equals(dartWebLinkCount));
 
       WebLinks orderedDartWebLinks = dartWebLinks.order();
-      expect(orderedDartWebLinks.list, isNot(isEmpty));
+      expect(orderedDartWebLinks.toList(), isNot(isEmpty));
       expect(orderedDartWebLinks.count, equals(dartWebLinkCount));
       expect(orderedDartWebLinks.source, isNotNull);
-      expect(orderedDartWebLinks.source.list, isNot(isEmpty));
+      expect(orderedDartWebLinks.source.toList(), isNot(isEmpty));
       expect(orderedDartWebLinks.source.count,
         equals(dartWebLinkCount));
 
@@ -625,20 +625,20 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       entries.displayJson();
     });
     test('From JSON to Link Model', () {
-      expect(entries.empty, isFalse);
+      expect(entries.isEmpty, isFalse);
       entries.clear();
-      expect(entries.empty, isTrue);
+      expect(entries.isEmpty, isTrue);
 
       entries.fromJsonToData();
-      expect(entries.empty, isFalse);
+      expect(entries.isEmpty, isFalse);
       categories.display(title:'Categories: From JSON to Link Model');
       members.display(title:'Members: From JSON to Link Model');
 
       Comments comments = entries.comments;
-      expect(comments.empty, isTrue);
+      expect(comments.isEmpty, isTrue);
       Questions questions = entries.questions;
       expect(questions, isNotNull);
-      expect(questions.empty, isTrue);
+      expect(questions.isEmpty, isTrue);
     });
 
   });
