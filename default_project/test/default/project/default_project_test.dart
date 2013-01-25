@@ -223,7 +223,8 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       expect(copiedProjects.isEmpty, isFalse);
       expect(copiedProjects.length, equals(projects.length));
       expect(copiedProjects, isNot(same(projects)));
-      //expect(copiedProjects, equals(projects));
+      copiedProjects.forEach((cp) =>
+          expect(cp, equals(projects.find(cp.oid))));
       copiedProjects.forEach((cp) =>
           expect(cp, isNot(same(projects.findById(cp.id)))));
       copiedProjects.display(title:'Copied Projects');
