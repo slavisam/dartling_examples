@@ -37,35 +37,35 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       webLinkConcept = entries.getConcept('WebLink');
       expect(webLinkConcept, isNotNull);
       expect(webLinkConcept.attributes.isEmpty, isFalse);
-      expect(webLinkConcept.parents.count, equals(1));
+      expect(webLinkConcept.parents.length, equals(1));
 
       categories = entries.categories;
-      expect(categories.count, equals(categoryCount));
+      expect(categories.length, equals(categoryCount));
 
       var dartCategory = new Category(categoryConcept);
       expect(dartCategory, isNotNull);
-      expect(dartCategory.webLinks.count, equals(0));
+      expect(dartCategory.webLinks.length, equals(0));
       dartCategory.name = 'Dart';
       dartCategory.description = 'Dart Web language.';
       categories.add(dartCategory);
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
 
       var html5Category = new Category(categoryConcept);
       expect(html5Category, isNotNull);
-      expect(html5Category.webLinks.count, equals(0));
+      expect(html5Category.webLinks.length, equals(0));
       html5Category.name = 'HTML5';
       html5Category.description =
           'HTML5 is the ubiquitous platform for the modern web.';
       categories.add(html5Category);
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
 
       var css3Category = new Category(categoryConcept);
       expect(css3Category, isNotNull);
-      expect(css3Category.webLinks.count, equals(0));
+      expect(css3Category.webLinks.length, equals(0));
       css3Category.name = 'CSS3';
       css3Category.description = 'Cascading Style Sheets for the modern web.';
       categories.add(css3Category);
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
 
       var dartHomeWebLink = new WebLink(webLinkConcept);
       expect(dartHomeWebLink, isNotNull);
@@ -76,7 +76,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dartHomeWebLink.category = dartCategory;
       expect(dartHomeWebLink.category, isNotNull);
       dartCategory.webLinks.add(dartHomeWebLink);
-      expect(dartCategory.webLinks.count, equals(++dartWebLinkCount));
+      expect(dartCategory.webLinks.length, equals(++dartWebLinkCount));
 
       var tryDartWebLink = new WebLink(webLinkConcept);
       expect(tryDartWebLink, isNotNull);
@@ -88,7 +88,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       tryDartWebLink.category = dartCategory;
       expect(tryDartWebLink.category, isNotNull);
       dartCategory.webLinks.add(tryDartWebLink);
-      expect(dartCategory.webLinks.count, equals(++dartWebLinkCount));
+      expect(dartCategory.webLinks.length, equals(++dartWebLinkCount));
 
       var dartNewsWebLink = new WebLink(webLinkConcept);
       expect(dartNewsWebLink, isNotNull);
@@ -100,7 +100,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dartNewsWebLink.category = dartCategory;
       expect(dartNewsWebLink.category, isNotNull);
       dartCategory.webLinks.add(dartNewsWebLink);
-      expect(dartCategory.webLinks.count, equals(++dartWebLinkCount));
+      expect(dartCategory.webLinks.length, equals(++dartWebLinkCount));
 
       var dartBugssWebLink = new WebLink(webLinkConcept);
       expect(dartBugssWebLink, isNotNull);
@@ -111,7 +111,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dartBugssWebLink.category = dartCategory;
       expect(dartBugssWebLink.category, isNotNull);
       dartCategory.webLinks.add(dartBugssWebLink);
-      expect(dartCategory.webLinks.count, equals(++dartWebLinkCount));
+      expect(dartCategory.webLinks.length, equals(++dartWebLinkCount));
 
       memberConcept = entries.getConcept('Member');
       expect(memberConcept, isNotNull);
@@ -120,10 +120,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       interestConcept = entries.getConcept('Interest');
       expect(interestConcept, isNotNull);
       expect(interestConcept.attributes.toList(), isNot(isEmpty));
-      expect(interestConcept.parents.count, equals(2));
+      expect(interestConcept.parents.length, equals(2));
 
       members = entries.members;
-      expect(members.count, equals(memberCount));
+      expect(members.length, equals(memberCount));
 
       var dzenan = new Member(memberConcept);
       expect(dzenan, isNotNull);
@@ -147,7 +147,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
     spiral development of domain models and dynamic web applications
     with NoSQL databases.''';
       members.add(dzenan);
-      expect(members.count, equals(++memberCount));
+      expect(members.length, equals(++memberCount));
       dzenanOid = dzenan.oid;
       expect(dzenanOid, isNotNull);
 
@@ -159,7 +159,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       claudeb.lastName = 'Begin';
       claudeb.email = 'claude.begin@hotmail.com';
       members.add(claudeb);
-      expect(members.count, equals(++memberCount));
+      expect(members.length, equals(++memberCount));
 
       var dzenanDartInterest = new Interest(interestConcept);
       expect(dzenanDartInterest, isNotNull);
@@ -171,13 +171,13 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenanDartInterest.category = dartCategory;
       dzenan.interests.add(dzenanDartInterest);
       dartCategory.interests.add(dzenanDartInterest);
-      expect(dzenan.interests.count, equals(++dzenanInterestCount));
-      expect(dartCategory.interests.count, equals(++dartInterestCount));
+      expect(dzenan.interests.length, equals(++dzenanInterestCount));
+      expect(dartCategory.interests.length, equals(++dartInterestCount));
     });
     tearDown(() {
       entries.clear();
-      expect(categories.count, equals(0));
-      expect(members.count, equals(0));
+      expect(categories.length, equals(0));
+      expect(members.length, equals(0));
       categoryCount = 0;
       dartWebLinkCount = 0;
       memberCount = 0;
@@ -193,7 +193,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartCategory.name, equals('Dart'));
 
       WebLinks dartWebLinks = dartCategory.webLinks;
-      expect(dartWebLinks.count, equals(dartWebLinkCount));
+      expect(dartWebLinks.length, equals(dartWebLinkCount));
       Id dartHomeId = new Id(entries.getConcept('WebLink'));
       dartHomeId.setParent('category', dartCategory);
       dartHomeId.setAttribute('subject', 'Dart Home');
@@ -204,10 +204,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
     test('Order Categories by Id (code not used, id is name)', () {
       Categories orderedCategories = categories.order();
       expect(orderedCategories.toList(), isNot(isEmpty));
-      expect(orderedCategories.count, equals(categoryCount));
+      expect(orderedCategories.length, equals(categoryCount));
       expect(orderedCategories.source, isNotNull);
       expect(orderedCategories.source.toList(), isNot(isEmpty));
-      expect(orderedCategories.source.count, equals(categoryCount));
+      expect(orderedCategories.source.length, equals(categoryCount));
 
       orderedCategories.display(title:
         'Categories Ordered By Id (code not used, id is name)');
@@ -216,14 +216,14 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       Category dartCategory = categories.findByAttribute('name', 'Dart');
       expect(dartCategory, isNotNull);
       WebLinks dartWebLinks = dartCategory.webLinks;
-      expect(dartWebLinks.count, equals(dartWebLinkCount));
+      expect(dartWebLinks.length, equals(dartWebLinkCount));
 
       WebLinks orderedDartWebLinks = dartWebLinks.order();
       expect(orderedDartWebLinks.toList(), isNot(isEmpty));
-      expect(orderedDartWebLinks.count, equals(dartWebLinkCount));
+      expect(orderedDartWebLinks.length, equals(dartWebLinkCount));
       expect(orderedDartWebLinks.source, isNotNull);
       expect(orderedDartWebLinks.source.toList(), isNot(isEmpty));
-      expect(orderedDartWebLinks.source.count,
+      expect(orderedDartWebLinks.source.length,
         equals(dartWebLinkCount));
 
       orderedDartWebLinks.display(title:'Ordered Dart Web Links');
@@ -232,9 +232,9 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var webFrameworkCategory =
           new Category.withId(categoryConcept, 'Web Framework');
       expect(webFrameworkCategory, isNotNull);
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
       categories.add(webFrameworkCategory);
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
 
       categories.display(title:'Categories Including Web Framework');
     });
@@ -251,9 +251,9 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
           'Dart brings structure to web app engineering '
           'with a new language, libraries, and tools.';
       dartCategory.webLinks.add(dartHomeWebLink);
-      expect(dartCategory.webLinks.count, equals(dartWebLinkCount));
-      expect(dartCategory.webLinks.errors.count, equals(1));
-      expect(dartCategory.webLinks.errors.list[0].category, equals('required'));
+      expect(dartCategory.webLinks.length, equals(dartWebLinkCount));
+      expect(dartCategory.webLinks.errors.length, equals(1));
+      expect(dartCategory.webLinks.errors.toList()[0].category, equals('required'));
       dartCategory.webLinks.errors.display(title:'WebLink Error');
     });
     test('New Uri from String', () {
@@ -296,29 +296,29 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var webFrameworkCategory =
           new Category.withId(categoryConcept, 'Web Framework');
       expect(webFrameworkCategory, isNotNull);
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
 
       var action = new AddAction(session, categories, webFrameworkCategory);
       action.doit();
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
 
       session.past.undo();
-      expect(categories.count, equals(--categoryCount));
+      expect(categories.length, equals(--categoryCount));
 
       session.past.redo();
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
     });
     test('Undo and Redo Transaction', () {
       var webFrameworkCategory =
           new Category.withId(categoryConcept, 'Web Framework');
       expect(webFrameworkCategory, isNotNull);
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
 
       var action1 = new AddAction(session, categories, webFrameworkCategory);
 
       var dbCategory = new Category.withId(categoryConcept, 'Database');
       expect(dbCategory, isNotNull);
-      expect(dbCategory.webLinks.count, equals(0));
+      expect(dbCategory.webLinks.length, equals(0));
 
       var action2 = new AddAction(session, categories, dbCategory);
 
@@ -327,30 +327,30 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       transaction.add(action2);
       transaction.doit();
       categoryCount = categoryCount + 2;
-      expect(categories.count, equals(categoryCount));
+      expect(categories.length, equals(categoryCount));
       categories.display(title:'Transaction Done');
 
       session.past.undo();
       categoryCount = categoryCount - 2;
-      expect(categories.count, equals(categoryCount));
+      expect(categories.length, equals(categoryCount));
       categories.display(title:'Transaction Undone');
 
       session.past.redo();
       categoryCount = categoryCount + 2;
-      expect(categories.count, equals(categoryCount));
+      expect(categories.length, equals(categoryCount));
       categories.display(title:'Transaction Redone');
     });
     test('Undo and Redo Transaction with Id Error', () {
       var webFrameworkCategory =
           new Category.withId(categoryConcept, 'Web Framework');
       expect(webFrameworkCategory, isNotNull);
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
 
       var action1 = new AddAction(session, categories, webFrameworkCategory);
 
       var dbCategory = new Category.withId(categoryConcept, 'Dart');
       expect(dbCategory, isNotNull);
-      expect(dbCategory.webLinks.count, equals(0));
+      expect(dbCategory.webLinks.length, equals(0));
 
       var action2 = new AddAction(session, categories, dbCategory);
 
@@ -360,16 +360,16 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       transaction.add(action2);
       var done = transaction.doit();
       expect(done, isFalse);
-      expect(categories.count, equals(categoryCount));
+      expect(categories.length, equals(categoryCount));
       categories.display(title:'Transaction (with Id Error) Done');
 
       if (done) {
         var undone = session.past.undo();
-        expect(categories.count, equals(categoryCount));
+        expect(categories.length, equals(categoryCount));
         categories.display(title:'Transaction (with Id Error) Undone');
         if (undone) {
           session.past.redo();
-          expect(categories.count, equals(categoryCount));
+          expect(categories.length, equals(categoryCount));
           categories.display(title:'Transaction (with Id Error) Redone');
         }
       }
@@ -378,7 +378,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var webFrameworkCategory =
           new Category.withId(categoryConcept, 'Web Framework');
       expect(webFrameworkCategory, isNotNull);
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
 
       var action1 = new AddAction(session, categories, webFrameworkCategory);
 
@@ -393,7 +393,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
           'debugging and brittle code for powerful, reusable components written '
           'with plain Java and HTML.';
       wicketWebLink.category = webFrameworkCategory;
-      expect(webFrameworkCategory.webLinks.count, equals(0));
+      expect(webFrameworkCategory.webLinks.length, equals(0));
 
       var action2 =
           new AddAction(session, webFrameworkCategory.webLinks, wicketWebLink);
@@ -402,19 +402,19 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       transaction.add(action1);
       transaction.add(action2);
       transaction.doit();
-      expect(categories.count, equals(++categoryCount));
-      expect(webFrameworkCategory.webLinks.count, equals(1));
+      expect(categories.length, equals(++categoryCount));
+      expect(webFrameworkCategory.webLinks.length, equals(1));
       categories.display(title:'Transaction  on Two Different Concepts Done');
 
       session.past.undo();
-      expect(categories.count, equals(--categoryCount));
+      expect(categories.length, equals(--categoryCount));
       categories.display(title:'Transaction on Two Different Concepts Undone');
 
       session.past.redo();
-      expect(categories.count, equals(++categoryCount));
+      expect(categories.length, equals(++categoryCount));
       var category = categories.findByAttribute('name', 'Web Framework');
       expect(category, isNotNull);
-      expect(category.webLinks.count, equals(1));
+      expect(category.webLinks.length, equals(1));
       categories.display(title:'Transaction on Two Different Concepts Redone');
     });
     test('Find Member by Oid', () {
@@ -452,8 +452,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenanHtml5Interest.category = html5;
       dzenan.interests.add(dzenanHtml5Interest);
       html5.interests.add(dzenanHtml5Interest);
-      expect(dzenan.interests.count, equals(++dzenanInterestCount));
-      expect(html5.interests.count, equals(++html5InterestCount));
+      expect(dzenan.interests.length, equals(++dzenanInterestCount));
+      expect(html5.interests.length, equals(++html5InterestCount));
 
       categories.display(title:'Categories', withChildren:false);
       dzenan.interests.display(title:"Dzenan's Interests");
@@ -469,9 +469,9 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
           'I am interested in canvas and other modern elements of HTML5.';
       dzenanHtml5Interest.member = dzenan;
       dzenan.interests.add(dzenanHtml5Interest);
-      expect(dzenan.interests.count, equals(dzenanInterestCount));
-      expect(dzenan.interests.errors.count, equals(1));
-      expect(dzenan.interests.errors.list[0].category, equals('required'));
+      expect(dzenan.interests.length, equals(dzenanInterestCount));
+      expect(dzenan.interests.errors.length, equals(1));
+      expect(dzenan.interests.errors.toList()[0].category, equals('required'));
 
       dzenan.interests.errors.display(title:'Add Interest Required Error');
     });
@@ -493,8 +493,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenanHtml5Interest.category = html5;
       dzenan.interests.add(dzenanHtml5Interest);
       html5.interests.add(dzenanHtml5Interest);
-      expect(dzenan.interests.count, equals(++dzenanInterestCount));
-      expect(html5.interests.count, equals(++html5InterestCount));
+      expect(dzenan.interests.length, equals(++dzenanInterestCount));
+      expect(html5.interests.length, equals(++html5InterestCount));
 
       var dzenanHtmlInterest = new Interest(interestConcept);
       expect(dzenanHtmlInterest, isNotNull);
@@ -502,12 +502,12 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenanHtmlInterest.category = html5;
       dzenan.interests.add(dzenanHtmlInterest);
       html5.interests.add(dzenanHtmlInterest);
-      expect(dzenan.interests.count, equals(dzenanInterestCount));
-      expect(dzenan.interests.errors.count, equals(1));
-      expect(dzenan.interests.errors.list[0].category, equals('unique'));
-      expect(html5.interests.count, equals(html5InterestCount));
-      expect(html5.interests.errors.count, equals(1));
-      expect(html5.interests.errors.list[0].category, equals('unique'));
+      expect(dzenan.interests.length, equals(dzenanInterestCount));
+      expect(dzenan.interests.errors.length, equals(1));
+      expect(dzenan.interests.errors.toList()[0].category, equals('unique'));
+      expect(html5.interests.length, equals(html5InterestCount));
+      expect(html5.interests.errors.length, equals(1));
+      expect(html5.interests.errors.toList()[0].category, equals('unique'));
 
       dzenan.display(prefix:'dzenan: ', withChildren:false);
       html5.display(prefix:'html5: ', withChildren:false);
@@ -524,8 +524,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
           'Dartling is in pre-beta version now.';
       Comments comments = entries.comments;
       comments.add(comment);
-      expect(comments.errors.count, equals(0));
-      expect(comments.count, equals(1));
+      expect(comments.errors.length, equals(0));
+      expect(comments.length, equals(1));
       //comments.display('Comments');
     });
     test('Add New Questions with Number Increment of 1', () {
@@ -534,15 +534,15 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       Questions questions = entries.questions;
       expect(questions, isNotNull);
       questions.clear();
-      expect(questions.count, equals(0));
+      expect(questions.length, equals(0));
 
       var question = new Question(questionConcept);
       expect(question, isNotNull);
       question.text =
           'Is Dartling a main memory based model framework?';
       questions.add(question);
-      expect(questions.errors.count, equals(0));
-      expect(questions.count, equals(1));
+      expect(questions.errors.length, equals(0));
+      expect(questions.length, equals(1));
       expect(question.category, isNull);
       expect(question.number, equals(1));
 
@@ -551,8 +551,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       question.text =
           'Can I debug a command-line application in Dart?';
       questions.add(question);
-      expect(questions.errors.count, equals(0));
-      expect(questions.count, equals(2));
+      expect(questions.errors.length, equals(0));
+      expect(questions.length, equals(2));
       expect(question.category, isNull);
       expect(question.number, equals(2));
 
@@ -564,7 +564,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       Questions questions = entries.questions;
       expect(questions, isNotNull);
       questions.clear();
-      expect(questions.count, equals(0));
+      expect(questions.length, equals(0));
 
       Attribute numberAttribute = questionConcept.attributes.findByCode('number');
       expect(numberAttribute, isNotNull);
@@ -575,8 +575,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       question.text =
           'Is Dartling a main memory based model framework?';
       questions.add(question);
-      expect(questions.errors.count, equals(0));
-      expect(questions.count, equals(1));
+      expect(questions.errors.length, equals(0));
+      expect(questions.length, equals(1));
       expect(question.category, isNull);
       expect(question.number, equals(10));
 
@@ -585,8 +585,8 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       question.text =
           'Can I debug a command-line application in Dart?';
       questions.add(question);
-      expect(questions.errors.count, equals(0));
-      expect(questions.count, equals(2));
+      expect(questions.errors.length, equals(0));
+      expect(questions.length, equals(2));
       expect(question.category, isNull);
       expect(question.number, equals(20));
 

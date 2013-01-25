@@ -15,7 +15,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
 
       var projectCount = 0;
       var projects = entries.projects;
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
 
       var projectConcept = projects.concept;
       expect(projectConcept, isNotNull);
@@ -27,7 +27,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       design.description =
           'Creating a model of Dartling concepts based on MagicBoxes.';
       projects.add(design);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var prototype = new Project(projectConcept);
       expect(prototype, isNotNull);
@@ -35,7 +35,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       prototype.description =
           'Programming the meta model and the generic model.';
       projects.add(prototype);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var production = new Project(projectConcept);
       expect(production, isNotNull);
@@ -43,7 +43,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       production.description =
           'Programming Dartling.';
       projects.add(production);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
     });
     tearDown(() {
       entries.clear();
@@ -71,43 +71,43 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     test('Add Project Required Error', () {
       var projects = entries.projects;
       var projectConcept = projects.concept;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var project = new Project(projectConcept);
       expect(project, isNotNull);
       var added = projects.add(project);
       expect(added, isFalse);
-      expect(projects.count, equals(projectCount));
-      expect(projects.errors.count, equals(1));
-      expect(projects.errors.list[0].category, equals('required'));
+      expect(projects.length, equals(projectCount));
+      expect(projects.errors.length, equals(1));
+      expect(projects.errors.toList()[0].category, equals('required'));
       projects.errors.display(title:'Add Project Required Error');
     });
     test('Add Project Unique Error', () {
       var projects = entries.projects;
       var projectConcept = projects.concept;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var project = new Project(projectConcept);
       expect(project, isNotNull);
       project.name = 'Dartling';
       var added = projects.add(project);
       expect(added, isFalse);
-      expect(projects.count, equals(projectCount));
-      expect(projects.errors.count, equals(1));
-      expect(projects.errors.list[0].category, equals('unique'));
+      expect(projects.length, equals(projectCount));
+      expect(projects.errors.length, equals(1));
+      expect(projects.errors.toList()[0].category, equals('unique'));
       projects.errors.display(title:'Add Project Unique Error');
     });
     test('Add Project Pre Validation', () {
       var projects = entries.projects;
       var projectConcept = projects.concept;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var project = new Project(projectConcept);
       expect(project, isNotNull);
       project.name =
           'A new project with a long name that cannot be accepted';
       var added = projects.add(project);
       expect(added, isFalse);
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
       expect(projects.errors, hasLength(1));
-      expect(projects.errors.list[0].category, equals('pre'));
+      expect(projects.errors.toList()[0].category, equals('pre'));
       projects.errors.display(title:'Add Project Pre Validation');
     });
     test('Find Project by New Oid', () {
@@ -132,7 +132,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var projects = entries.projects;
       var projectConcept = projects.concept;
       Id id = new Id(projectConcept);
-      expect(id.count, equals(1));
+      expect(id.length, equals(1));
       var searchName = 'Dartling';
       id.setAttribute('name', searchName);
       var project = projects.findById(id);
@@ -179,7 +179,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Select Projects by Function then Remove', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       //projects.display('Projects Before Remove');
       Projects programmingProjects = projects.select((p) => p.onProgramming);
       expect(programmingProjects.isEmpty, isFalse);
@@ -189,41 +189,41 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var project = programmingProjects.findByNameId(searchName);
       expect(project, isNotNull);
       expect(project.name, equals(searchName));
-      var programmingProjectCount = programmingProjects.count;
+      var programmingProjectCount = programmingProjects.length;
       programmingProjects.remove(project);
-      expect(programmingProjects.count, equals(--programmingProjectCount));
-      expect(projects.count, equals(--projectCount));
+      expect(programmingProjects.length, equals(--programmingProjectCount));
+      expect(projects.length, equals(--projectCount));
     });
     test('Order Projects by Name', () {
       var projects = entries.projects;
       var orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
       expect(orderedProjects.isEmpty, isFalse);
-      expect(orderedProjects.count, equals(projects.count));
+      expect(orderedProjects.length, equals(projects.length));
       expect(orderedProjects.source.isEmpty, isFalse);
-      expect(orderedProjects.source.count, equals(projects.count));
+      expect(orderedProjects.source.length, equals(projects.length));
 
       orderedProjects.display(title:'Order Projects by Name');
     });
     test('New Project with Id', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       var added = projects.add(marketing);
       expect(added, isTrue);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       projects.display(title:'New Project with Id');
     });
     test('Copy Projects', () {
       var projects = entries.projects;
       var copiedProjects = projects.copy();
       expect(copiedProjects.isEmpty, isFalse);
-      expect(copiedProjects.count, equals(projects.count));
+      expect(copiedProjects.length, equals(projects.length));
       expect(copiedProjects, isNot(same(projects)));
-      expect(copiedProjects, equals(projects));
+      //expect(copiedProjects, equals(projects));
       copiedProjects.forEach((cp) =>
           expect(cp, isNot(same(projects.findById(cp.id)))));
       copiedProjects.display(title:'Copied Projects');
@@ -235,13 +235,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Update New Project Id with Try', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       projects.add(marketing);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var beforeNameUpdate = marketing.name;
       try {
@@ -252,13 +252,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Update New Project Id without Try', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       projects.add(marketing);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var beforeNameUpdate = marketing.name;
       expect(() => marketing.name = 'Marketing Dartling', throws);
@@ -266,13 +266,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Update New Project Id with Success', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       projects.add(marketing);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       //projects.display('Before Update New Project Id with Success');
 
       var afterUpdateMarketing = marketing.copy();
@@ -293,13 +293,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Update New Project Description with Failure', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       projects.add(marketing);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var beforeDescriptionUpdate = marketing.description;
       var afterUpdateMarketing = marketing.copy();
@@ -311,13 +311,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Copy Equality', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
       marketing.description = 'Making Dartling known to the Dart community.';
       projects.add(marketing);
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       marketing.display(prefix:'before copy: ');
       var afterUpdateMarketing = marketing.copy();
@@ -352,7 +352,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('New Project Undo and Redo', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
@@ -361,17 +361,17 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var session = models.newSession();
       var action = new AddAction(session, projects, marketing);
       action.doit();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       action.undo();
-      expect(projects.count, equals(--projectCount));
+      expect(projects.length, equals(--projectCount));
 
       action.redo();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
     });
     test('New Project Undo and Redo with Session', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var marketing = new Project.withId(projectConcept, 'Dartling Marketing');
       expect(marketing, isNotNull);
@@ -380,13 +380,13 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var session = models.newSession();
       var action = new AddAction(session, projects, marketing);
       action.doit();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       session.past.undo();
-      expect(projects.count, equals(--projectCount));
+      expect(projects.length, equals(--projectCount));
 
       session.past.redo();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
     });
     test('Undo and Redo Update Project', () {
       var projects = entries.projects;
@@ -409,7 +409,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Project Action with Multiple Undos and Redos ', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
 
       var project1 = new Project(projectConcept);
@@ -418,36 +418,36 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var session = models.newSession();
       var action1 = new AddAction(session, projects, project1);
       action1.doit();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       var project2 = new Project(projectConcept);
       project2.name = 'Database design';
 
       var action2 = new AddAction(session, projects, project2);
       action2.doit();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
 
       session.past.display();
 
       session.past.undo();
-      expect(projects.count, equals(--projectCount));
+      expect(projects.length, equals(--projectCount));
       session.past.display();
 
       session.past.undo();
-      expect(projects.count, equals(--projectCount));
+      expect(projects.length, equals(--projectCount));
       session.past.display();
 
       session.past.redo();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       session.past.display();
 
       session.past.redo();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       session.past.display();
     });
     test('Undo and Redo Transaction', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var session = models.newSession();
 
@@ -464,22 +464,22 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       transaction.add(action2);
       transaction.doit();
       projectCount = projectCount + 2;
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
       projects.display(title:'Transaction Done');
 
       session.past.undo();
       projectCount = projectCount - 2;
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
       projects.display(title:'Transaction Undone');
 
       session.past.redo();
       projectCount = projectCount + 2;
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
       projects.display(title:'Transaction Redone');
     });
     test('Undo and Redo Transaction with Id Error', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
       var session = models.newSession();
 
@@ -497,12 +497,12 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       transaction.add(action2);
       var done = transaction.doit();
       expect(done, isFalse);
-      expect(projects.count, equals(projectCount));
+      expect(projects.length, equals(projectCount));
       projects.display(title:'Transaction (with Id Error) Done');
     });
     test('Reactions to Project Actions', () {
       var projects = entries.projects;
-      var projectCount = projects.count;
+      var projectCount = projects.length;
       var projectConcept = projects.concept;
 
       var reaction = new ProjectReaction();
@@ -515,7 +515,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
       var session = models.newSession();
       var addAction = new AddAction(session, projects, project);
       addAction.doit();
-      expect(projects.count, equals(++projectCount));
+      expect(projects.length, equals(++projectCount));
       expect(reaction.reactedOnAdd, isTrue);
 
       var description = 'Documenting Dartling.';
