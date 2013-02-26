@@ -23,11 +23,11 @@ abstract class WebLinkGen extends ConceptEntity<WebLink> {
   String get description => getAttribute("description");
   set description(String a) => setAttribute("description", a);
 
-  Date get createdOn => getAttribute("createdOn");
-  set createdOn(Date a) => setAttribute("createdOn", a);
+  DateTime get createdOn => getAttribute("createdOn");
+  set createdOn(DateTime a) => setAttribute("createdOn", a);
 
-  Date get updatedOn => getAttribute("updatedOn");
-  set updatedOn(Date a) => setAttribute("updatedOn", a);
+  DateTime get updatedOn => getAttribute("updatedOn");
+  set updatedOn(DateTime a) => setAttribute("updatedOn", a);
 
   bool get approved => getAttribute("approved");
   set approved(bool a) => setAttribute("approved", a);

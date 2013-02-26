@@ -12,8 +12,8 @@ abstract class CommentGen extends ConceptEntity<Comment> {
   String get source => getAttribute("source");
   set source(String a) => setAttribute("source", a);
 
-  Date get createdOn => getAttribute("createdOn");
-  set createdOn(Date a) => setAttribute("createdOn", a);
+  DateTime get createdOn => getAttribute("createdOn");
+  set createdOn(DateTime a) => setAttribute("createdOn", a);
 
   Comment newEntity() => new Comment(concept);
 

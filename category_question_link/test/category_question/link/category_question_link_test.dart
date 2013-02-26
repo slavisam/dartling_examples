@@ -202,14 +202,18 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartHomeWebLink.subject, equals('Dart Home'));
     });
     test('Order Categories by Id (code not used, id is name)', () {
+      /*
       Categories orderedCategories = categories.order();
       expect(orderedCategories.toList(), isNot(isEmpty));
       expect(orderedCategories.length, equals(categoryCount));
       expect(orderedCategories.source, isNotNull);
       expect(orderedCategories.source.toList(), isNot(isEmpty));
       expect(orderedCategories.source.length, equals(categoryCount));
-
       orderedCategories.display(title:
+        'Categories Ordered By Id (code not used, id is name)');
+      */
+      categories.order();
+      categories.display(title:
         'Categories Ordered By Id (code not used, id is name)');
     });
     test('Order Dart Web Links by Name', () {
@@ -217,7 +221,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartCategory, isNotNull);
       WebLinks dartWebLinks = dartCategory.webLinks;
       expect(dartWebLinks.length, equals(dartWebLinkCount));
-
+      /*
       WebLinks orderedDartWebLinks = dartWebLinks.order();
       expect(orderedDartWebLinks.toList(), isNot(isEmpty));
       expect(orderedDartWebLinks.length, equals(dartWebLinkCount));
@@ -225,8 +229,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(orderedDartWebLinks.source.toList(), isNot(isEmpty));
       expect(orderedDartWebLinks.source.length,
         equals(dartWebLinkCount));
-
       orderedDartWebLinks.display(title:'Ordered Dart Web Links');
+      */
+      dartWebLinks.order();
+      dartWebLinks.display(title:'Ordered Dart Web Links');
     });
     test('New Category with Id', () {
       var webFrameworkCategory =

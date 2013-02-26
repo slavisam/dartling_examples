@@ -10,7 +10,7 @@ part of category_question_link;
    *  id email : String
    *  rq firstName : String
    *  rq lastName : String
-   *  rq startedOn : Date (init: now)
+   *  rq startedOn : DateTime (init: now)
    *  at receiveEmail : bool (init: false)
    *  rq password : String (init: sensitive)
    *  rq role : String (init: regular)
@@ -35,8 +35,8 @@ part of category_question_link;
    *  id subject : String
    *  rq url : Uri
    *  at description : String
-   *  rq createdOn : Date (init: now)
-   *  at updatedOn : Date
+   *  rq createdOn : DateTime (init: now)
+   *  at updatedOn : DateTime
    *  rq approved : bool (init: false)
    *  id category
    *
@@ -45,14 +45,14 @@ part of category_question_link;
    *  at type : String
    *  rq text : String
    *  at response : String
-   *  rq createdOn : Date (init: now)
+   *  rq createdOn : DateTime (init: now)
    *  at points : num
    *  01 category
    *
    *  || Comment
    *  rq text : String
    *  at source : String
-   *  rq createdOn : Date (init: now)
+   *  rq createdOn : DateTime (init: now)
    */
 
   /*
@@ -166,7 +166,7 @@ var categoryQuestionLinkModelJson = r'''
                "sequence":40,
                "category":"required",
                "name":"startedOn",
-               "type":"Date",
+               "type":"DateTime",
                "init":"now"
             },
             {
@@ -270,14 +270,14 @@ var categoryQuestionLinkModelJson = r'''
                "sequence":50,
                "category":"required",
                "name":"createdOn",
-               "type":"Date",
+               "type":"DateTime",
                "init":"now"
             },
             {
                "sequence":60,
                "category":"attribute",
                "name":"updatedOn",
-               "type":"Date",
+               "type":"DateTime",
                "init":""
             },
             {
@@ -332,7 +332,7 @@ var categoryQuestionLinkModelJson = r'''
                "sequence":30,
                "category":"required",
                "name":"createdOn",
-               "type":"Date",
+               "type":"DateTime",
                "init":"now"
             }
          ]

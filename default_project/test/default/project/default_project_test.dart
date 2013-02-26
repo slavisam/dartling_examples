@@ -196,14 +196,17 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
     });
     test('Order Projects by Name', () {
       var projects = entries.projects;
+      /*
       var orderedProjects =
           projects.orderByFunction((m,n) => m.nameCompareTo(n));
       expect(orderedProjects.isEmpty, isFalse);
       expect(orderedProjects.length, equals(projects.length));
       expect(orderedProjects.source.isEmpty, isFalse);
       expect(orderedProjects.source.length, equals(projects.length));
-
       orderedProjects.display(title:'Order Projects by Name');
+      */
+      projects.orderByFunction((m,n) => m.nameCompareTo(n));
+      projects.display(title:'Order Projects by Name');
     });
     test('New Project with Id', () {
       var projects = entries.projects;

@@ -13,14 +13,14 @@ class WebLink extends WebLinkGen {
     var before = description;
     super.description = a;
     if (before != null) {
-      updatedOn = new Date.now();
+      updatedOn = new DateTime.now();
     }
   }
 
   set approved(bool a) {
     super.approved = a;
     if (approved) {
-      updatedOn = new Date.now();
+      updatedOn = new DateTime.now();
     }
   }
 
