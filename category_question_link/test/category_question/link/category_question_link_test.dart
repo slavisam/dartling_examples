@@ -70,7 +70,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var dartHomeWebLink = new WebLink(webLinkConcept);
       expect(dartHomeWebLink, isNotNull);
       dartHomeWebLink.subject = 'Dart Home';
-      dartHomeWebLink.url = new Uri.fromString('http://www.dartlang.org/');
+      dartHomeWebLink.url = Uri.parse('http://www.dartlang.org/');
       dartHomeWebLink.description =
           'Dart is a new web language with libraries and tools.';
       dartHomeWebLink.category = dartCategory;
@@ -81,7 +81,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var tryDartWebLink = new WebLink(webLinkConcept);
       expect(tryDartWebLink, isNotNull);
       tryDartWebLink.subject = 'Try Dart';
-      tryDartWebLink.url = new Uri.fromString('http://try.dartlang.org/');
+      tryDartWebLink.url = Uri.parse('http://try.dartlang.org/');
       tryDartWebLink.description =
           'Try out the Dart Language from the comfort of your web browser.';
       expect(tryDartWebLink.category, isNull);
@@ -93,7 +93,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var dartNewsWebLink = new WebLink(webLinkConcept);
       expect(dartNewsWebLink, isNotNull);
       dartNewsWebLink.subject = 'Dart News';
-      dartNewsWebLink.url = new Uri.fromString('http://news.dartlang.org/');
+      dartNewsWebLink.url = Uri.parse('http://news.dartlang.org/');
       dartNewsWebLink.description =
           'Official news from the Dart project.';
       expect(dartNewsWebLink.category, isNull);
@@ -105,7 +105,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var dartBugssWebLink = new WebLink(webLinkConcept);
       expect(dartBugssWebLink, isNotNull);
       dartBugssWebLink.subject = 'Dart Bugs';
-      dartBugssWebLink.url = new Uri.fromString('????+\\dart&bug!hom');
+      dartBugssWebLink.url = Uri.parse('????+\\dart&bug!hom');
       dartBugssWebLink.description = 'Dart error management.';
       expect(dartBugssWebLink.category, isNull);
       dartBugssWebLink.category = dartCategory;
@@ -252,7 +252,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartHomeWebLink, isNotNull);
       expect(dartHomeWebLink.category, isNull);
       dartHomeWebLink.subject = 'Dart Home';
-      dartHomeWebLink.url = new Uri.fromString('http://www.dartlang.org/');
+      dartHomeWebLink.url = Uri.parse('http://www.dartlang.org/');
       dartHomeWebLink.description =
           'Dart brings structure to web app engineering '
           'with a new language, libraries, and tools.';
@@ -268,7 +268,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       try {
         s = '????:\\**""##&dartbug!hom';
-        uri = new Uri.fromString(s);
+        uri = Uri.parse(s);
       } on ArgumentError catch (e) {
         expect(uri, isNull);
         print('/// Not valid uri: $s; $e');
@@ -280,7 +280,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       try {
         s = '';
-        uri = new Uri.fromString(s);
+        uri = Uri.parse(s);
       } on ArgumentError catch (e) {
         expect(uri, isNull);
         print('/// Not valid uri: $s; $e');
@@ -292,7 +292,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       try {
         s = null;
-        uri = new Uri.fromString(s);
+        uri = Uri.parse(s);
       } on ArgumentError catch (e) {
         print('/// Not valid uri: $s; $uri; $e');
         print('');
@@ -391,7 +391,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       var wicketWebLink = new WebLink(webLinkConcept);
       expect(wicketWebLink, isNotNull);
       wicketWebLink.subject = 'Wicket';
-      wicketWebLink.url = new Uri.fromString('http://wicket.apache.org/');
+      wicketWebLink.url = Uri.parse('http://wicket.apache.org/');
       wicketWebLink.description =
           'With proper mark-up/logic separation, a POJO data model, '
           'and a refreshing lack of XML, Apache Wicket makes developing '

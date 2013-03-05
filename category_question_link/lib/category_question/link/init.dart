@@ -33,7 +33,7 @@ _initWithTestSetUpData(var entries) {
 
   var dartHomeWebLink = new WebLink(webLinkConcept);
   dartHomeWebLink.subject = 'Dart Home';
-  dartHomeWebLink.url = new Uri.fromString('http://www.dartlang.org/');
+  dartHomeWebLink.url = Uri.parse('http://www.dartlang.org/');
   dartHomeWebLink.description =
       'Dart is a new web language with libraries and tools.';
   dartHomeWebLink.category = dartCategory;
@@ -41,7 +41,7 @@ _initWithTestSetUpData(var entries) {
 
   var tryDartWebLink = new WebLink(webLinkConcept);
   tryDartWebLink.subject = 'Try Dart';
-  tryDartWebLink.url = new Uri.fromString('http://try.dartlang.org/');
+  tryDartWebLink.url = Uri.parse('http://try.dartlang.org/');
   tryDartWebLink.description =
       'Try out the Dart Language from the comfort of your web browser.';
   tryDartWebLink.category = dartCategory;
@@ -49,7 +49,7 @@ _initWithTestSetUpData(var entries) {
 
   var dartNewsWebLink = new WebLink(webLinkConcept);
   dartNewsWebLink.subject = 'Dart News';
-  dartNewsWebLink.url = new Uri.fromString('http://news.dartlang.org/');
+  dartNewsWebLink.url = Uri.parse('http://news.dartlang.org/');
   dartNewsWebLink.description =
       'Official news from the Dart project.';
   dartNewsWebLink.category = dartCategory;
@@ -57,7 +57,7 @@ _initWithTestSetUpData(var entries) {
 
   var dartBugssWebLink = new WebLink(webLinkConcept);
   dartBugssWebLink.subject = 'Dart Bugs';
-  dartBugssWebLink.url = new Uri.fromString('????+\\dart&bug!hom');
+  dartBugssWebLink.url = Uri.parse('????+\\dart&bug!hom');
   dartBugssWebLink.description = 'Dart error management.';
   dartBugssWebLink.category = dartCategory;
   dartCategory.webLinks.add(dartBugssWebLink);
