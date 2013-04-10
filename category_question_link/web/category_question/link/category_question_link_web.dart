@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import 'dart:html';
 
 import 'package:dartling/dartling.dart';
-import 'package:dartling/dartling_app.dart';
+import 'package:dartling_default_app/dartling_default_app.dart';
 
 import 'package:category_question_link/category_question_link.dart';
 
