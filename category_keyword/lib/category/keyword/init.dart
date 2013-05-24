@@ -53,7 +53,7 @@ _initTags(var entries) {
 
   Category dartCategory = categories.findInTree('name', 'Dart');
   assert(dartCategory != null);
-  Keyword ooKeyword = keywords.findByAttributeId('word', 'oo');
+  Keyword ooKeyword = keywords.singleWhereAttributeId('word', 'oo');
   assert(ooKeyword != null);
   if (ooKeyword != null && dartCategory != null) {
     Tag ooDartTag =
@@ -62,7 +62,7 @@ _initTags(var entries) {
     ooKeyword.tags.add(ooDartTag);
   }
 
-  Keyword functionKeyword = keywords.findByAttributeId('word', 'function');
+  Keyword functionKeyword = keywords.singleWhereAttributeId('word', 'function');
   assert(functionKeyword != null);
   if (functionKeyword != null && dartCategory != null) {
     Tag functionDartTag =

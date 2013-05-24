@@ -7,13 +7,13 @@ part of category_question_link;
 abstract class MemberGen extends ConceptEntity<Member> {
 
   MemberGen(Concept concept) : super.of(concept) {
-    Concept interestConcept = concept.model.concepts.findByCode("Interest");
+    Concept interestConcept = concept.model.concepts.singleWhereCode("Interest");
     setChild("interests", new Interests(interestConcept));
   }
 
   MemberGen.withId(Concept concept, String email) : super.of(concept) {
     setAttribute("email", email);
-    Concept interestConcept = concept.model.concepts.findByCode("Interest");
+    Concept interestConcept = concept.model.concepts.singleWhereCode("Interest");
     setChild("interests", new Interests(interestConcept));
   }
 

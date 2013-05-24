@@ -5,13 +5,13 @@ part of category_keyword;
 abstract class KeywordGen extends ConceptEntity<Keyword> {
 
   KeywordGen(Concept concept) : super.of(concept) {
-    Concept tagConcept = concept.model.concepts.findByCode("Tag");
+    Concept tagConcept = concept.model.concepts.singleWhereCode("Tag");
     setChild("tags", new Tags(tagConcept));
   }
 
   KeywordGen.withId(Concept concept, String word) : super.of(concept) {
     setAttribute("word", word);
-    Concept tagConcept = concept.model.concepts.findByCode("Tag");
+    Concept tagConcept = concept.model.concepts.singleWhereCode("Tag");
     setChild("tags", new Tags(tagConcept));
   }
 

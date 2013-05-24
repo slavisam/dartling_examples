@@ -7,21 +7,21 @@ part of category_question_link;
 abstract class CategoryGen extends ConceptEntity<Category> {
 
   CategoryGen(Concept concept) : super.of(concept) {
-    Concept webLinkConcept = concept.model.concepts.findByCode("WebLink");
+    Concept webLinkConcept = concept.model.concepts.singleWhereCode("WebLink");
     setChild("webLinks", new WebLinks(webLinkConcept));
-    Concept interestConcept = concept.model.concepts.findByCode("Interest");
+    Concept interestConcept = concept.model.concepts.singleWhereCode("Interest");
     setChild("interests", new Interests(interestConcept));
-    Concept questionConcept = concept.model.concepts.findByCode("Question");
+    Concept questionConcept = concept.model.concepts.singleWhereCode("Question");
     setChild("questions", new Questions(questionConcept));
   }
 
   CategoryGen.withId(Concept concept, String name) : super.of(concept) {
     setAttribute("name", name);
-    Concept webLinkConcept = concept.model.concepts.findByCode("WebLink");
+    Concept webLinkConcept = concept.model.concepts.singleWhereCode("WebLink");
     setChild("webLinks", new WebLinks(webLinkConcept));
-    Concept interestConcept = concept.model.concepts.findByCode("Interest");
+    Concept interestConcept = concept.model.concepts.singleWhereCode("Interest");
     setChild("interests", new Interests(interestConcept));
-    Concept questionConcept = concept.model.concepts.findByCode("Question");
+    Concept questionConcept = concept.model.concepts.singleWhereCode("Question");
     setChild("questions", new Questions(questionConcept));
   }
 

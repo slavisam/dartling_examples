@@ -188,7 +188,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
     test('Find Category and Web Link by Id', () {
       Id categoryId = new Id(entries.getConcept('Category'));
       categoryId.setAttribute('name', 'Dart');
-      Category dartCategory = categories.findById(categoryId);
+      Category dartCategory = categories.singleWhereId(categoryId);
       expect(dartCategory, isNotNull);
       expect(dartCategory.name, equals('Dart'));
 
@@ -197,27 +197,30 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       Id dartHomeId = new Id(entries.getConcept('WebLink'));
       dartHomeId.setParent('category', dartCategory);
       dartHomeId.setAttribute('subject', 'Dart Home');
-      WebLink dartHomeWebLink = dartWebLinks.findById(dartHomeId);
+      WebLink dartHomeWebLink = dartWebLinks.singleWhereId(dartHomeId);
       expect(dartHomeWebLink, isNotNull);
       expect(dartHomeWebLink.subject, equals('Dart Home'));
     });
     test('Order Categories by Id (code not used, id is name)', () {
-      /*
       Categories orderedCategories = categories.order();
       expect(orderedCategories.toList(), isNot(isEmpty));
       expect(orderedCategories.length, equals(categoryCount));
       expect(orderedCategories.source, isNotNull);
       expect(orderedCategories.source.toList(), isNot(isEmpty));
       expect(orderedCategories.source.length, equals(categoryCount));
+
+      /*
       orderedCategories.display(title:
         'Categories Ordered By Id (code not used, id is name)');
-      */
+
       categories.order();
+      */
+
       categories.display(title:
         'Categories Ordered By Id (code not used, id is name)');
     });
     test('Order Dart Web Links by Name', () {
-      Category dartCategory = categories.findByAttribute('name', 'Dart');
+      Category dartCategory = categories.firstWhereAttribute('name', 'Dart');
       expect(dartCategory, isNotNull);
       WebLinks dartWebLinks = dartCategory.webLinks;
       expect(dartWebLinks.length, equals(dartWebLinkCount));
@@ -245,7 +248,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       categories.display(title:'Categories Including Web Framework');
     });
     test('New WebLink No Category Error', () {
-      Category dartCategory = categories.findByAttribute('name', 'Dart');
+      Category dartCategory = categories.firstWhereAttribute('name', 'Dart');
       expect(dartCategory, isNotNull);
 
       var dartHomeWebLink = new WebLink(webLinkConcept);
@@ -418,35 +421,35 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
 
       session.past.redo();
       expect(categories.length, equals(++categoryCount));
-      var category = categories.findByAttribute('name', 'Web Framework');
+      var category = categories.firstWhereAttribute('name', 'Web Framework');
       expect(category, isNotNull);
       expect(category.webLinks.length, equals(1));
       categories.display(title:'Transaction on Two Different Concepts Redone');
     });
     test('Find Member by Oid', () {
-      var dzenan = members.find(dzenanOid);
+      var dzenan = members.singleWhereOid(dzenanOid);
       expect(dzenan, isNotNull);
       expect(dzenan.firstName, equals('Dzenan'));
     });
     test('Find Member by Attribute Id', () {
       var search = 'dzenanr@gmail.com';
-      Member member = members.findByAttributeId('email', search);
+      Member member = members.singleWhereAttributeId('email', search);
       expect(members, isNotNull);
       expect(member.email, equals(search));
     });
     test('Find Category by Attribute Id', () {
       var search = 'Dart';
-      var dart = categories.findByAttributeId('name', search);
+      var dart = categories.singleWhereAttributeId('name', search);
       expect(dart, isNotNull);
       expect(dart.name, equals(search));
     });
     test('Add New Interest', () {
-      var dzenan = members.find(dzenanOid);
+      var dzenan = members.singleWhereOid(dzenanOid);
       expect(dzenan, isNotNull);
       expect(dzenan.firstName, equals('Dzenan'));
 
       var search = 'HTML5';
-      var html5 = categories.findByAttributeId('name', search);
+      var html5 = categories.singleWhereAttributeId('name', search);
       expect(html5, isNotNull);
       expect(html5.name, equals(search));
 
@@ -465,7 +468,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenan.interests.display(title:"Dzenan's Interests");
     });
     test('Add Interest Required Error', () {
-      var dzenan = members.find(dzenanOid);
+      var dzenan = members.singleWhereOid(dzenanOid);
       expect(dzenan, isNotNull);
       expect(dzenan.firstName, equals('Dzenan'));
 
@@ -482,12 +485,12 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       dzenan.interests.errors.display(title:'Add Interest Required Error');
     });
     test('Add Interest Unique Error', () {
-      var dzenan = members.find(dzenanOid);
+      var dzenan = members.singleWhereOid(dzenanOid);
       expect(dzenan, isNotNull);
       expect(dzenan.firstName, equals('Dzenan'));
 
       var search = 'HTML5';
-      var html5 = categories.findByAttributeId('name', search);
+      var html5 = categories.singleWhereAttributeId('name', search);
       expect(html5, isNotNull);
       expect(html5.name, equals(search));
 
@@ -572,7 +575,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       questions.clear();
       expect(questions.length, equals(0));
 
-      Attribute numberAttribute = questionConcept.attributes.findByCode('number');
+      Attribute numberAttribute = questionConcept.attributes.singleWhereCode('number');
       expect(numberAttribute, isNotNull);
       numberAttribute.increment = 10;
 
@@ -599,10 +602,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       //questions.display('Questions with Number Increment of 10');
     });
     test('Update Web Link Description with UpdatedOn Change', () {
-      var dartCategory = categories.findByAttribute('name', 'Dart');
+      var dartCategory = categories.firstWhereAttribute('name', 'Dart');
       expect(dartCategory, isNotNull);
       var dartBugsWebLink =
-          dartCategory.webLinks.findByAttribute('subject', 'Dart Bugs');
+          dartCategory.webLinks.firstWhereAttribute('subject', 'Dart Bugs');
       expect(dartBugsWebLink, isNotNull);
       expect(dartBugsWebLink.updatedOn, isNull);
 
@@ -612,10 +615,10 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       //dartBugsWebLink.display('+++ ');
     });
     test('Approve Web Link with UpdatedOn Change', () {
-      var dartCategory = categories.findByAttribute('name', 'Dart');
+      var dartCategory = categories.firstWhereAttribute('name', 'Dart');
       expect(dartCategory, isNotNull);
       var dartBugsWebLink =
-          dartCategory.webLinks.findByAttribute('subject', 'Dart Bugs');
+          dartCategory.webLinks.firstWhereAttribute('subject', 'Dart Bugs');
       expect(dartBugsWebLink, isNotNull);
       expect(dartBugsWebLink.updatedOn, isNull);
       expect(dartBugsWebLink.approved, isFalse);

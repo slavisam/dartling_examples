@@ -11,19 +11,19 @@ class LinkEntries extends ModelEntries {
   Map<String, Entities> newEntries() {
     var entries = new Map<String, Entities>();
     var concept;
-    concept = model.concepts.findByCode("Member");
+    concept = model.concepts.singleWhereCode("Member");
     entries["Member"] = new Members(concept);
-    concept = model.concepts.findByCode("Category");
+    concept = model.concepts.singleWhereCode("Category");
     entries["Category"] = new Categories(concept);
-    concept = model.concepts.findByCode("Comment");
+    concept = model.concepts.singleWhereCode("Comment");
     entries["Comment"] = new Comments(concept);
-    concept = model.concepts.findByCode("Question");
+    concept = model.concepts.singleWhereCode("Question");
     entries["Question"] = new Questions(concept);
     return entries;
   }
 
   Entities newEntities(String conceptCode) {
-    var concept = model.concepts.findByCode(conceptCode);
+    var concept = model.concepts.singleWhereCode(conceptCode);
     if (concept == null) {
       throw new ConceptError("${conceptCode} concept does not exist.") ;
     }
@@ -48,7 +48,7 @@ class LinkEntries extends ModelEntries {
   }
 
   ConceptEntity newEntity(String conceptCode) {
-    var concept = model.concepts.findByCode(conceptCode);
+    var concept = model.concepts.singleWhereCode(conceptCode);
     if (concept == null) {
       throw new ConceptError("${conceptCode} concept does not exist.") ;
     }

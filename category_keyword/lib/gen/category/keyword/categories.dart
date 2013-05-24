@@ -5,17 +5,17 @@ part of category_keyword;
 abstract class CategoryGen extends ConceptEntity<Category> {
 
   CategoryGen(Concept concept) : super.of(concept) {
-    Concept categoryConcept = concept.model.concepts.findByCode("Category");
+    Concept categoryConcept = concept.model.concepts.singleWhereCode("Category");
     setChild("categories", new Categories(categoryConcept));
-    Concept tagConcept = concept.model.concepts.findByCode("Tag");
+    Concept tagConcept = concept.model.concepts.singleWhereCode("Tag");
     setChild("tags", new Tags(tagConcept));
   }
 
   CategoryGen.withId(Concept concept, String namePath) : super.of(concept) {
     setAttribute("namePath", namePath);
-    Concept categoryConcept = concept.model.concepts.findByCode("Category");
+    Concept categoryConcept = concept.model.concepts.singleWhereCode("Category");
     setChild("categories", new Categories(categoryConcept));
-    Concept tagConcept = concept.model.concepts.findByCode("Tag");
+    Concept tagConcept = concept.model.concepts.singleWhereCode("Tag");
     setChild("tags", new Tags(tagConcept));
   }
 

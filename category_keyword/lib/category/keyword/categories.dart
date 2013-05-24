@@ -25,7 +25,7 @@ class Categories extends CategoriesGen {
   Categories(Concept concept) : super(concept);
 
   Category findInTree(String attributeName, String attributeValue) {
-    Category category = findByAttribute(attributeName, attributeValue);
+    Category category = firstWhereAttribute(attributeName, attributeValue);
     if (category == null) {
       for (Category c in this) {
         category = c.categories.findInTree(attributeName, attributeValue);
