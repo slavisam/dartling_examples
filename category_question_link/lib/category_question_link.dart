@@ -33,8 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 library category_question_link;
 
-import 'dart:uri';
-
 import 'package:dartling/dartling.dart';
 
 part 'category_question/link/json/data.dart';

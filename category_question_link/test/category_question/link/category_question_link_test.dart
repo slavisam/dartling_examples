@@ -1,6 +1,4 @@
 
-import 'dart:uri';
-
 import 'package:dartling/dartling.dart';
 import 'package:unittest/unittest.dart';
 
