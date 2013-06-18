@@ -45,7 +45,7 @@ genCode() {
   // change Skeleton to YourModelName
   // change "Skeleton" to "YourModelName"
   Model categoryQuestionLinkModel =
-      fromMagicBoxes(categoryQuestionLinkModelJson, categoryQuestionDomain, "Link");
+      fromJsonToModel(categoryQuestionLinkModelJson, categoryQuestionDomain, "Link");
 
   repo.domains.add(categoryQuestionDomain);
 

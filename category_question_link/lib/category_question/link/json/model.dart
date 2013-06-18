@@ -146,27 +146,35 @@ var categoryQuestionLinkModelJson = r'''
                "category":"identifier",
                "name":"email",
                "type":"Email",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":20,
                "category":"required",
                "name":"firstName",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":30,
                "category":"required",
                "name":"lastName",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":40,
                "category":"required",
                "name":"startedOn",
                "type":"DateTime",
+               "essential":false,
+               "sensitive":false,
                "init":"now"
             },
             {
@@ -174,6 +182,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"receiveEmail",
                "type":"bool",
+               "essential":false,
+               "sensitive":false,
                "init":"false"
             },
             {
@@ -181,13 +191,17 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"password",
                "type":"String",
-               "init":"sensitive"
+               "essential":false,
+               "sensitive":true,
+               "init":""
             },
             {
                "sequence":70,
                "category":"required",
                "name":"role",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":"regular"
             },
             {
@@ -195,6 +209,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"karma",
                "type":"num",
+               "essential":false,
+               "sensitive":false,
                "init":"1"
             },
             {
@@ -202,6 +218,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"about",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             }
          ]
@@ -219,13 +237,17 @@ var categoryQuestionLinkModelJson = r'''
                "category":"identifier",
                "name":"name",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":30,
                "category":"attribute",
                "name":"description",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -233,6 +255,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"approved",
                "type":"bool",
+               "essential":false,
+               "sensitive":false,
                "init":"false"
             }
          ]
@@ -250,20 +274,26 @@ var categoryQuestionLinkModelJson = r'''
                "category":"identifier",
                "name":"subject",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":30,
                "category":"required",
                "name":"url",
                "type":"Uri",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":40,
                "category":"attribute",
                "name":"description",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -271,6 +301,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"createdOn",
                "type":"DateTime",
+               "essential":false,
+               "sensitive":false,
                "init":"now"
             },
             {
@@ -278,6 +310,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"updatedOn",
                "type":"DateTime",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -285,6 +319,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"approved",
                "type":"bool",
+               "essential":false,
+               "sensitive":false,
                "init":"false"
             }
          ]
@@ -302,6 +338,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"description",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             }
          ]
@@ -319,13 +357,17 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"text",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":20,
                "category":"attribute",
                "name":"source",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -333,6 +375,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"createdOn",
                "type":"DateTime",
+               "essential":false,
+               "sensitive":false,
                "init":"now"
             }
          ]
@@ -350,6 +394,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"identifier",
                "name":"number",
                "type":"int",
+               "essential":false,
+               "sensitive":false,
                "init":"increment"
             },
             {
@@ -357,6 +403,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"type",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -364,13 +412,17 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"text",
                "type":"String",
-               "init":"essential"
+               "essential":true,
+               "sensitive":false,
+               "init":""
             },
             {
                "sequence":40,
                "category":"attribute",
                "name":"response",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             },
             {
@@ -378,6 +430,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"required",
                "name":"createdOn",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":"now"
             },
             {
@@ -385,6 +439,8 @@ var categoryQuestionLinkModelJson = r'''
                "category":"attribute",
                "name":"points",
                "type":"num",
+               "essential":false,
+               "sensitive":false,
                "init":""
             }
          ]

@@ -9,7 +9,7 @@ class CategoryModels extends DomainModels {
   }
 
   KeywordEntries fromJsonToKeywordEntries() {
-    return new KeywordEntries(fromMagicBoxes(
+    return new KeywordEntries(fromJsonToModel(
       categoryKeywordModelJson,
       domain,
       CategoryRepo.categoryKeywordModelCode));

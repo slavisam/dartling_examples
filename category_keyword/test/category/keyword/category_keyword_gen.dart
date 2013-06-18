@@ -45,7 +45,7 @@ genCode() {
   // change Skeleton to YourModelName
   // change "Skeleton" to "YourModelName"
   Model categoryKeywordModel =
-      fromMagicBoxes(categoryKeywordModelJson, categoryDomain, "Keyword");
+      fromJsonToModel(categoryKeywordModelJson, categoryDomain, "Keyword");
 
   repo.domains.add(categoryDomain);
 

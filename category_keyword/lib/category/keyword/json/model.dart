@@ -65,6 +65,8 @@ var categoryKeywordModelJson = r'''
                "category":"required",
                "name":"name",
                "type":"String",
+               "essential":true,
+               "sensitive":false,
                "init":""
             },
             {
@@ -72,6 +74,8 @@ var categoryKeywordModelJson = r'''
                "category":"identifier",
                "name":"namePath",
                "type":"String",
+               "essential":false,
+               "sensitive":false,
                "init":""
             }
          ]
@@ -89,6 +93,8 @@ var categoryKeywordModelJson = r'''
                "category":"identifier",
                "name":"word",
                "type":"String",
+               "essential":true,
+               "sensitive":false,
                "init":""
             }
          ]

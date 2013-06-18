@@ -11,7 +11,7 @@ class CategoryQuestionModels extends DomainModels {
   }
 
   LinkEntries fromJsonToLinkEntries() {
-    return new LinkEntries(fromMagicBoxes(
+    return new LinkEntries(fromJsonToModel(
       categoryQuestionLinkModelJson,
       domain,
       CategoryQuestionRepo.categoryQuestionLinkModelCode));
