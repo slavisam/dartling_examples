@@ -99,7 +99,7 @@ testDefaultProject(Repo repo, String domainCode, String modelCode) {
 
       projects.errors.display(title:'Add Project Unique Error');
     });
-    test('Add Project Pre Validation', () {
+    test('Add Project Pre Validation Error', () {
       var projects = entries.projects;
       var projectConcept = projects.concept;
       var projectCount = projects.length;
