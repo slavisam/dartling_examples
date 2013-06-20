@@ -222,7 +222,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(dartCategory, isNotNull);
       WebLinks dartWebLinks = dartCategory.webLinks;
       expect(dartWebLinks.length, equals(dartWebLinkCount));
-      /*
+
       WebLinks orderedDartWebLinks = dartWebLinks.order();
       expect(orderedDartWebLinks.toList(), isNot(isEmpty));
       expect(orderedDartWebLinks.length, equals(dartWebLinkCount));
@@ -231,7 +231,7 @@ testCategoryQuestionLink(Repo repo, String domainCode, String modelCode) {
       expect(orderedDartWebLinks.source.length,
         equals(dartWebLinkCount));
       orderedDartWebLinks.display(title:'Ordered Dart Web Links');
-      */
+
       dartWebLinks.order();
       dartWebLinks.display(title:'Ordered Dart Web Links');
     });
